@@ -44,7 +44,22 @@ graph LR
     style C fill:#59a14f,stroke:#333,stroke-width:2px,color:white
     style D fill:#e15759,stroke:#333,stroke-width:2px,color:white
     style E fill:#76b7b2,stroke:#333,stroke-width:2px,color:white
-IF: Fetch instruction from memory.ID: Decode & read registers.EX: Calculate (ALU operation).MEM: Read/Write to data memory.WB: Write result to register file.🧩 Software Design (Strategy Pattern)To make the code modular and clean, we used the Strategy Design Pattern. This allows us to switch hazard handling logic dynamically without changing the core simulator code.مقتطف الرمزclassDiagram
+```
+
+* **IF:** Fetch instruction from memory.
+* **ID:** Decode & read registers.
+* **EX:** Calculate (ALU operation).
+* **MEM:** Read/Write to data memory.
+* **WB:** Write result to register file.
+
+---
+
+## 🧩 Software Design (Strategy Pattern)
+
+To make the code modular and clean, we used the **Strategy Design Pattern**. This allows us to switch hazard handling logic dynamically without changing the core simulator code.
+
+```mermaid
+classDiagram
     class PipelineSimulator {
         +run()
         +step()
@@ -63,14 +78,56 @@ IF: Fetch instruction from memory.ID: Decode & read registers.EX: Calculate (ALU
     PipelineSimulator --> HazardResolver : uses strategy
     HazardResolver <|-- NoForwarding : inherits
     HazardResolver <|-- Forwarding : inherits
-📊 Performance ResultsWe benchmarked a sample instruction sequence with dependencies (RAW) to compare the two strategies.Metric🐢 No Forwarding🐇 With Forwarding🟢 ImprovementTotal Cycles15 Cycles11 CyclesFasterStalls Incurred4 Stalls0 StallsNo WaitingThroughputLowerHigher~26% BoostAnalysis: By using Forwarding, we eliminated the need to wait for the Write-Back stage, allowing dependent instructions to execute immediately using data from the ALU output.🚀 How to RunClone the repository:Bashgit clone [https://github.com/seif1436/CPU-Pipeline-Simulator.git](https://github.com/seif1436/CPU-Pipeline-Simulator.git)
-cd CPU-Pipeline-Simulator
-Install dependencies:Bashpip install matplotlib
-Run the Simulation:Open src/Pipeline_Simulator.ipynb in Jupyter Notebook or VS Code.Run all cells to see the Gantt Chart Visualization and detailed logs.👥 Team MembersNameRoleSeif Eldin MohamedLead Developer & ArchitectureMohamed EssamImplementation LogicMohamed MedhatResearch & TestingSaeed WaleedData AnalysisSaeed MahmoudDocumentationSupervised by: Prof. Dr. Hossam Reda Mohamed<p align="center">Made with ❤️ by Zagazig University Students | HPC Course 2025</p>
-### إيه المميز في النسخة دي؟ ✨
+```
 
-1.  **Mermaid Diagrams:** الرسومات اللي جوه (المربعات الملونة وشجرة الكلاسات) دي مش صور، ده كود هيتحول لرسمة أول ما ترفع على GitHub، فمستحيل تطلع مكسورة\!
-2.  **Organization:** قسمتلك الدنيا جداول وعناوين واضحة.
-3.  **Visuals:** حطيت أيقونات (🐢 للبطيء و 🐇 للسريع) عشان تكسر جمود النص.
+---
 
-خدها Copy وحطها في ملف الـ `README.md` وارفع، وهتدعيلي\! 🚀
+## 📊 Performance Results
+
+We benchmarked a sample instruction sequence with dependencies (`RAW`) to compare the two strategies.
+
+| Metric | 🐢 No Forwarding | 🐇 With Forwarding | 🟢 Improvement |
+| :--- | :--- | :--- | :--- |
+| **Total Cycles** | **15** Cycles | **11** Cycles | **Faster** |
+| **Stalls Incurred** | 4 Stalls | 0 Stalls | **No Waiting** |
+| **Throughput** | Lower | Higher | **~26% Boost** |
+
+> **Analysis:** By using Forwarding, we eliminated the need to wait for the Write-Back stage, allowing dependent instructions to execute immediately using data from the ALU output.
+
+---
+
+## 🚀 How to Run
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/seif1436/CPU-Pipeline-Simulator.git](https://github.com/seif1436/CPU-Pipeline-Simulator.git)
+    cd CPU-Pipeline-Simulator
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    pip install matplotlib
+    ```
+
+3.  **Run the Simulation:**
+    * Open `src/Pipeline_Simulator.ipynb` in **Jupyter Notebook** or **VS Code**.
+    * Run all cells to see the **Gantt Chart Visualization** and detailed logs.
+
+---
+
+## 👥 Team Members
+
+| Name | Role |
+| :--- | :--- |
+| **Seif Eldin Mohamed** | Lead Developer & Architecture |
+| **Mohamed Essam** | Implementation Logic |
+| **Mohamed Medhat** | Research & Testing |
+| **Saeed Waleed** | Data Analysis |
+| **Saeed Mahmoud** | Documentation |
+
+**Supervised by:** Prof. Dr. Hossam Reda Mohamed
+
+---
+<p align="center">
+  Made with ❤️ by Zagazig University Students | HPC Course 2025
+</p>
