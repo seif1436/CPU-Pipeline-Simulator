@@ -119,11 +119,11 @@ We benchmarked a sample instruction sequence with dependencies (`RAW`) to compar
 
 | Name | Role |
 | :--- | :--- |
-| **Seif Eldin Mohamed** | Lead Developer & Architecture |
+| **Seif Eldin Mohamed** | Lead Developer & Architecture & Implementation |
 | **Mohamed Essam** | Implementation Logic |
 | **Mohamed Medhat** | Research & Testing |
 | **Saeed Waleed** | Data Analysis |
-| **Saeed Mahmoud** | Documentation |
+
 
 **Supervised by:** Prof. Dr. Hossam Reda Mohamed
 
@@ -131,3 +131,4 @@ We benchmarked a sample instruction sequence with dependencies (`RAW`) to compar
 <p align="center">
   Made with ❤️ by Zagazig University Students | HPC Course 2025
 </p>
+
